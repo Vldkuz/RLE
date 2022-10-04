@@ -132,19 +132,21 @@ if (method.startsWith('es'))
 {
     const rle_type=rle_escape;
     if (mode.startsWith('en')){   
-        try {
+        if (FILE.existsSync(IN) && FILE.existsSync(OT))
+        {
             decision=rle_type.encode_escape(FILE.readFileSync(IN,"utf-8"));
-            FILE.writeFileSync(OT,decision);}
-        catch (error) {
-            console.log('Oшибка в названии файла');}
+            FILE.writeFileSync(OT,decision);
+        }
+        else console.log('Oшибка в названии файла');
     }
     else
     {
-        try {
+        if (FILE.existsSync(IN) && FILE.existsSync(OT))
+        {
             decision=rle_type.decode_escape(FILE.readFileSync(IN,"utf-8"));
-            FILE.writeFileSync(OT,decision);}
-        catch (error) {
-            console.log('Oшибка в названии файла');}
+            FILE.writeFileSync(OT,decision);
+        }
+        else console.log('Oшибка в названии файла');
     }
 }
 else if(method.startsWith('ju'))
@@ -152,19 +154,21 @@ else if(method.startsWith('ju'))
     const rle_type=rle_jump;
     if (mode.startsWith('en'))
     {
-        try {
+        if (FILE.existsSync(IN) && FILE.existsSync(OT)) 
+        {
             output=rle_type.encode_jump(FILE.readFileSync(IN,"utf-8"));
-            FILE.writeFileSync(OT,output);} 
-        catch (error) {
-            console.log('Ошибка в названии файла');}
+            FILE.writeFileSync(OT,output);
+        }
+        else console.log("Ошибка в названии файла"); 
     }
     else
     {
-        try {
+        if (FILE.existsSync(IN) && FILE.existsSync(OT)) 
+        {
             output=rle_type.decode_jump(FILE.readFileSync(IN,"utf-8"));
-            FILE.writeFileSync(OT,output);}
-        catch (error) {
-            console.log('Ошибка в названии файла');}
+            FILE.writeFileSync(OT,output);
+        }
+        else console.log('Ошибка в названии файла');
     }
 }
 else
